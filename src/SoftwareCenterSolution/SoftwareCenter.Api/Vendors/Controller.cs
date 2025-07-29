@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Marten;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SoftwareCenter.Api.Vendors;
 
-public class Controller : ControllerBase
+public class Controller(IDocumentSession session) : ControllerBase
 {
-    private List<CreateVendorResponse> fakeDb = new();
+
+   
+
+ 
     // this is the method you should call when a POST /vendors is received.
     [HttpPost("/vendors")]
     public async Task<ActionResult> AddAVendorAsync(
@@ -27,7 +31,8 @@ public class Controller : ControllerBase
             request.Url,
             request.PointOfContact
             );
-        fakeDb.Add(response);
+        session.Store(response);
+        await session.SaveChangesAsync();
         return Ok(response); 
     }
 
@@ -37,7 +42,11 @@ public class Controller : ControllerBase
     public async Task<ActionResult> GetVendorByIdAsync(Guid id, CancellationToken token)
     {
         // look that thing up in the database.
-        var response = fakeDb.Where(v => v.Id == id).FirstOrDefault();
+        var response = await session
+            .Query<CreateVendorResponse>()
+            .Where(v => v.Id == id)
+            .SingleOrDefaultAsync();
+
         if (response is null)
         {
             return NotFound();

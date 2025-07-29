@@ -1,6 +1,21 @@
+using Marten;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var connectionString = builder.Configuration.GetConnectionString("db") ?? 
+    throw new Exception("Need a connection string");
+
+Console.WriteLine("Using Connection String: " + connectionString);
+builder.Services.AddMarten(config =>
+{
+    config.Connection(connectionString);
+
+}).UseLightweightSessions();
+
+// it will give us a scoped service called IDocumentSession
+// if this was Entity framework, it would give us a "DbContext" object we can use.
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
