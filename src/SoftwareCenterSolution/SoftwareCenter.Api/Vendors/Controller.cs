@@ -6,9 +6,6 @@ namespace SoftwareCenter.Api.Vendors;
 public class Controller(IDocumentSession session) : ControllerBase
 {
 
-   
-
- 
     // this is the method you should call when a POST /vendors is received.
     [HttpPost("/vendors")]
     public async Task<ActionResult> AddAVendorAsync(
@@ -55,6 +52,14 @@ public class Controller(IDocumentSession session) : ControllerBase
         {
             return Ok(response);
         }
+    }
+
+    [HttpGet("/vendors")]
+    public async Task<ActionResult> GetAllVendorsAsync(CancellationToken token)
+    {
+        var vendors = await session.Query<CreateVendorResponse>().ToListAsync();
+
+        return Ok(vendors);
     }
 
 }
