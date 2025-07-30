@@ -55,7 +55,7 @@ public class Controller(IDocumentSession session) : ControllerBase
 }
 
 
-public record AddShowRequest
+public class AddShowRequest
 {
     public string Name { get; init; } = string.Empty;
     public string Description { get; init; } = string.Empty;
