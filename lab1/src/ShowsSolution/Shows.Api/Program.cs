@@ -1,4 +1,6 @@
+using FluentValidation;
 using Marten;
+using Shows.Api.Api.Shows;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddMarten(config =>
 
 }).UseLightweightSessions();
 
+builder.Services.AddScoped<IValidator<AddShowRequest>, AddShowRequestValidator>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
