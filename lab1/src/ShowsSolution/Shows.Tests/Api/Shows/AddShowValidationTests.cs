@@ -39,7 +39,16 @@ public class AddShowValidationTests
                 new AddShowRequest()
                 {
                     Name = new string('x', NameMinLength - 1),
-                    Description = new string('x', DescriptionMaxLength - 1),
+                    Description = new string('x', DescriptionMinLength),
+                    StreamingService = "Hulu"
+                }
+            },
+             new object[]
+            {
+                new AddShowRequest()
+                {
+                    Name = new string('x', NameMinLength - 1),
+                    Description = new string('x', DescriptionMinLength),
                     StreamingService = "Hulu"
                 }
             },
