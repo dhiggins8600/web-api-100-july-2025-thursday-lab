@@ -24,3 +24,8 @@ GET {{SoftwareCenter.Api_HostAddress}}/vendors/e506c810-taco-salad
 ### 
 GET {{SoftwareCenter.Api_HostAddress}}/vendors/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImJvYkBhb2wuY29tIiwic3ViIjoiYm9iQGFvbC5jb20iLCJqdGkiOiIxNmQyNWE2YiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTMzNyIsIm5iZiI6MTc1Mzk3MzMyNiwiZXhwIjoxNzYxOTIyMTI2LCJpYXQiOjE3NTM5NzMzMjgsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.zpEo-_nQeS_1ePR3n53BlHJ6QEZ8zlc6ed7CNOjcONw
+
+
+###
+
+GET {{SoftwareCenter.Api_HostAddress}}/info
