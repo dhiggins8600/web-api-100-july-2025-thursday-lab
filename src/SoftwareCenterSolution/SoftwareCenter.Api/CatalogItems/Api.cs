@@ -6,16 +6,21 @@ public static class Api
 {
     public static IEndpointRouteBuilder MapCatalogItems(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("catalog-items");
-        group.MapGet("", () =>
-        {
-            var catalogItems = new List<string>();
-            return Results.Ok(catalogItems);
-        });
 
-        group.MapPost("", () =>
+        app.MapPost("/vendors/{id:guid}/items", (
+            Guid Id, 
+            CatalogItemCreateRequest request, 
+            IDocumentSession session) =>
         {
-            return Results.NoContent();
+            // validate the stuff - see the issue.
+            // create the entity
+
+            // from CatalogItemCreateRequest -> CatalogItemEntity
+            var entity = request.MapToEntity();
+            // save it to the database (side effect)
+            // create a response 
+
+            return Results.Ok();
         });
         return app;
     }
@@ -26,4 +31,42 @@ public static class Api
         //services.AddScoped
         return services;
     }
+}
+
+public record CatalogItemCreateRequest
+{
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Version { get; set; } = string.Empty;
+
+    public  CatalogItemEntity MapToEntity()
+    {
+        return new CatalogItemEntity
+        {
+
+            Id = Guid.NewGuid(),
+            Created = DateTimeOffset.UtcNow,
+            Description = Description,
+            Name = Name,
+            Version = Version,
+        };
+    }
+}
+
+public record CatalogItemDetails
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Version { get; set; } = string.Empty;
+}
+
+public class CatalogItemEntity
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Version { get; set; } = string.Empty;
+
+    public DateTimeOffset Created { get; set; }
 }
