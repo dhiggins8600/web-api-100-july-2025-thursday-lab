@@ -79,6 +79,33 @@ public class Controller(IDocumentSession session) : ControllerBase
         return Ok(vendors);
     }
 
+    [HttpPut("/vendors/{id:guid}/point-of-contact")]
+    public async Task<ActionResult> UpdateVendorPointOfContactAsync(
+        Guid id,
+        [FromBody] CreateVendorPointOfContactRequest request,
+        [FromServices] IValidator<CreateVendorPointOfContactRequest> validator,
+        CancellationToken token)
+    {
+        var validationResults = await validator.ValidateAsync(request);
+        if (!validationResults.IsValid)
+        {
+            return BadRequest(validationResults);
+        }
+        var vendor = await session
+            .Query<CreateVendorResponse>()
+            .Where(v => v.Id == id)
+            .SingleOrDefaultAsync(token);
+        if (vendor is null)
+        {
+            return NotFound();
+        }
+        // Create a new instance with the updated PointOfContact, since record properties are init-only.
+        var updatedVendor = vendor with { PointOfContact = request };
+        session.Store(updatedVendor);
+        await session.SaveChangesAsync(token);
+        return Ok(updatedVendor);
+    }
+
 }
 
 /*{
@@ -130,5 +157,6 @@ public class CreateVendorPointOfContactRequestValidator :
 public record CreateVendorResponse(
     Guid Id,
     string AddedBy,
-    string Name, string Url, CreateVendorPointOfContactRequest PointOfContact
+    string Name, string Url, 
+    CreateVendorPointOfContactRequest PointOfContact
     );

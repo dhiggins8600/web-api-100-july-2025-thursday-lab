@@ -1,7 +1,7 @@
 @SoftwareCenter.Api_HostAddress = http://localhost:1337
 
 POST {{SoftwareCenter.Api_HostAddress}}/vendors
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN1ZUBhb2wuY29tIiwic3ViIjoic3VlQGFvbC5jb20iLCJqdGkiOiI4ODI1ZDU5MCIsInJvbGUiOlsiU29mdHdhcmVDZW50ZXIiLCJNYW5hZ2VyIl0sImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTMzNyIsIm5iZiI6MTc1Mzk3MzU1NSwiZXhwIjoxNzYxOTIyMzU1LCJpYXQiOjE3NTM5NzM1NTUsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.ADnsGhBbgtO-WAnJzzjLwv0gPw-nPd25wPosleyCSsA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImR5bGFuQGFvbC5jb20iLCJzdWIiOiJkeWxhbkBhb2wuY29tIiwianRpIjoiMWFhYmUzMDAiLCJyb2xlIjpbIlNvZnR3YXJlQ2VudGVyIiwiTWFuYWdlciJdLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjEzMzciLCJuYmYiOjE3NTM5OTU1MjQsImV4cCI6MTc2MTk0NDMyNCwiaWF0IjoxNzUzOTk1NTI1LCJpc3MiOiJkb3RuZXQtdXNlci1qd3RzIn0.HI2iZG5Llw5tD6lMNPh3AVUVcmvSrclMtAGJPuJWPK0
 Accept: application/json
 Content-type: application/json
 
@@ -23,7 +23,7 @@ GET {{SoftwareCenter.Api_HostAddress}}/vendors/e506c810-taco-salad
 
 ### 
 GET {{SoftwareCenter.Api_HostAddress}}/vendors/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImJvYkBhb2wuY29tIiwic3ViIjoiYm9iQGFvbC5jb20iLCJqdGkiOiIxNmQyNWE2YiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTMzNyIsIm5iZiI6MTc1Mzk3MzMyNiwiZXhwIjoxNzYxOTIyMTI2LCJpYXQiOjE3NTM5NzMzMjgsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.zpEo-_nQeS_1ePR3n53BlHJ6QEZ8zlc6ed7CNOjcONw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImR5bGFuQGFvbC5jb20iLCJzdWIiOiJkeWxhbkBhb2wuY29tIiwianRpIjoiODM1ZjdjYzUiLCJyb2xlIjpbIkFkbWluIiwiQm9zcyJdLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjEzMzciLCJuYmYiOjE3NTM5OTUzNzIsImV4cCI6MTc2MTk0NDE3MiwiaWF0IjoxNzUzOTk1MzczLCJpc3MiOiJkb3RuZXQtdXNlci1qd3RzIn0.TKfKNH-gX3SxNupou7S7OaCzHFLb9xy9fOZk9Qt3zTo
 
 
 ###
@@ -40,4 +40,16 @@ Content-Type: application/json
     "name": "Word",
     "description": "Do words and stuff",
     "version": "2025"
+}
+
+###
+
+PUT {{SoftwareCenter.Api_HostAddress}}/vendors/c53f4f43-71cd-45bb-9333-2c7cf9afbfaf/point-of-contact
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImR5bGFuQGFvbC5jb20iLCJzdWIiOiJkeWxhbkBhb2wuY29tIiwianRpIjoiMWFhYmUzMDAiLCJyb2xlIjpbIlNvZnR3YXJlQ2VudGVyIiwiTWFuYWdlciJdLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjEzMzciLCJuYmYiOjE3NTM5OTU1MjQsImV4cCI6MTc2MTk0NDMyNCwiaWF0IjoxNzUzOTk1NTI1LCJpc3MiOiJkb3RuZXQtdXNlci1qd3RzIn0.HI2iZG5Llw5tD6lMNPh3AVUVcmvSrclMtAGJPuJWPK0
+Content-Type: application/json
+
+{
+  "name": "new name",
+  "phone": "new phone",
+  "email": "new email"
 }
